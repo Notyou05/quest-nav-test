@@ -44,7 +44,7 @@ import org.littletonrobotics.junction.networktables.LoggedDashboardChooser;
 public class RobotContainer {
   // Subsystems
   private final Drive drive;
-  private final QuestNavSubsystem questNavSubsystem;
+  private final QuestNavSubsystem QuestNavSubsystem;
 
   // Controller
   private final CommandXboxController controller = new CommandXboxController(0);
@@ -89,8 +89,8 @@ public class RobotContainer {
         break;
     }
 
-    // Initialize questNavSubsystem after drive is assigned
-    questNavSubsystem = new QuestNavSubsystem(drive);
+    // Initialize QuestNavSubsystem after drive is assigned
+    QuestNavSubsystem = new QuestNavSubsystem(drive);
 
     // Set up auto routines
     autoChooser = new LoggedDashboardChooser<>("Auto Choices", AutoBuilder.buildAutoChooser());
@@ -179,5 +179,9 @@ public class RobotContainer {
    */
   public Command getAutonomousCommand() {
     return autoChooser.get();
+  }
+
+  public QuestNavSubsystem getQuestNavSubsystem() {
+    return QuestNavSubsystem;
   }
 }

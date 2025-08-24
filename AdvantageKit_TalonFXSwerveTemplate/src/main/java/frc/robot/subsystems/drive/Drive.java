@@ -222,10 +222,19 @@ public class Drive extends SubsystemBase {
    *
    * @param speeds Speeds in meters/sec
    */
+  @SuppressWarnings("unused")
   public void runVelocity(ChassisSpeeds speeds) {
     // Calculate module setpoints
     ChassisSpeeds discreteSpeeds = ChassisSpeeds.discretize(speeds, 0.02);
-    SwerveModuleState[] setpointStates = kinematics.toSwerveModuleStates(discreteSpeeds);
+
+    SwerveModuleState[] setpointStates;
+    if (Constants.FUN_MODE == true) {
+      setpointStates =
+          kinematics.toSwerveModuleStates(discreteSpeeds, new Translation2d(0.254, 0.254));
+    } else {
+      setpointStates = kinematics.toSwerveModuleStates(discreteSpeeds);
+    }
+
     SwerveDriveKinematics.desaturateWheelSpeeds(setpointStates, TunerConstants.kSpeedAt12Volts);
 
     // Log unoptimized setpoints and setpoint speeds

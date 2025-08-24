@@ -34,4 +34,7 @@ public final class Constants {
     /** Replaying from a log file. */
     REPLAY
   }
+
+  public static final boolean FUN_MODE = false; // i promise this does nothing
+  public static final boolean CompetitionMode = false; // turns off logging. dont touch
 }

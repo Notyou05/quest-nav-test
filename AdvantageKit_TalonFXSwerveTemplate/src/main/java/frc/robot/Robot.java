@@ -37,6 +37,7 @@ public class Robot extends LoggedRobot {
   private RobotContainer robotContainer;
 
   public Robot() {
+
     // Record metadata
     Logger.recordMetadata("ProjectName", BuildConstants.MAVEN_NAME);
     Logger.recordMetadata("BuildDate", BuildConstants.BUILD_DATE);
@@ -75,11 +76,9 @@ public class Robot extends LoggedRobot {
         Logger.setReplaySource(new WPILOGReader(logPath));
         Logger.addDataReceiver(new WPILOGWriter(LogFileUtil.addPathSuffix(logPath, "_sim")));
         break;
-    }
-
-    // Start AdvantageKit logger
-    Logger.start();
-
+    }   
+      Logger.start();
+    
     // Check for valid swerve config
     var modules =
         new SwerveModuleConstants[] {
@@ -113,6 +112,7 @@ public class Robot extends LoggedRobot {
     // finished or interrupted commands, and running subsystem periodic() methods.
     // This must be called from the robot's periodic block in order for anything in
     // the Command-based framework to work.
+
     CommandScheduler.getInstance().run();
 
     // Return to non-RT thread priority (do not modify the first argument)
